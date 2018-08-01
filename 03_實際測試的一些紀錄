@@ -10,7 +10,8 @@ onPartitionsAssigned(Collection<TopicPartition> collection){
   consumer.seekToBeginning(collection);
 }
 consumer.seekToBeginning(collection)將會使consumer每次啟動時都重新消費一次所有訊息
-這行不執行時consumer則自動以最最後消費的訊息為起點
+(當然，若有自動清除訊息的機制時，應該是有機會無法從最原始的點開始，但其實從資料上看，歷史的訊息量並不會影響kafka的效能，在於硬體的保護而已)
+這行不執行時consumer則自動以最後消費的訊息為起點
 若consumer在某個時間點crash，當他重新on起來時將會把這段期間所有的訊息重新消費一次
 簡單的說，consumer啟動時會以最後一個消費的訊息為起點重新poll
 
