@@ -1,5 +1,5 @@
 如果我們要直接寫java的code來測試kafka的話
-可以引入這兩個依賴(這邊是用maven，寫紀錄的當下是這個版本)
+可以引入這兩個依賴(這邊是用maven，寫紀錄的當下版本)
 
 	<dependency>
 		<groupId>org.apache.kafka</groupId>
