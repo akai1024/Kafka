@@ -11,5 +11,5 @@ kafka_2.11-2.0.0這個版本的kafka本身已經包含zookeeper了，不需要�
 
 3. 可以在\bin\windows\下找到windows的啟動命令
 這邊我自己寫一個bat來call zookeeper-server-start.bat 和 kafka-server-start.bat
-因為這兩個啟動都需要傳入設定的絕對路徑
+因為這兩個啟動都需要傳入設定的絕對路徑，這樣比較方便以後直接啟動
 
