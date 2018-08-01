@@ -18,3 +18,4 @@ https://blog.yowko.com/2017/03/windows-os-apache-kafka.html
 在大多使用場景下，數據處理的順序都很重要。消息隊列本來就是排序的，並且能保證數據會按照特定的順序來處理。部分消息系統保證消息通過FIFO（先進先出）的順序來處理，因此消息在隊列中的位置就是從隊列中檢索他們的位置。
 7. 異步通信：
 很多時候，你不想也不需要立即處理消息。消息隊列提供了異步處理機制，允許你把一個消息放入隊列，但並不立即處理它。你想向隊列中放入多少消息就放多少，然後在你樂意的時候再去處理它們。
+8. 每一條消息被發送到broker時，會根據paritition規則選擇被存儲到哪一個partition。如果partition規則設置的合理，所有消息可以均勻分佈到不同的partition裡，這樣就實現了水平擴展。（如果一個topic對應一個文件，那這個文件所在的機器I/O將會成為這個topic的性能瓶頸，而partition解決了這個問題）。在創建topic時可以在$KAFKA_HOME/config/server.properties中指定這個partition的數量(如下所示)，當然也可以在topic創建之後去修改parition數量。
