@@ -1,0 +1,15 @@
+1. 直接搜尋kafka的下載(這邊使用已編譯好的版本直接執行)
+kafka_2.11-2.0.0這個版本的kafka本身已經包含zookeeper了，不需要額外下載zookeeper
+
+2. 調整config目錄下的properties
+2.1 zookeeper.properties
+ - dataDir參數，提供完整路徑
+2.2 server.properties
+ - broker.id代表目前的broker編號，每一組broker要是唯一的編號
+ - listeners提供該broker所使用的的監聽位置
+ - log.dirs為kafka主要的IO目錄，這邊也提供完整的路徑
+
+3. 可以在\bin\windows\下找到windows的啟動命令
+這邊我自己寫一個bat來call zookeeper-server-start.bat 和 kafka-server-start.bat
+因為這兩個啟動都需要傳入設定的絕對路徑
+
