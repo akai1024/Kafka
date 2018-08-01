@@ -28,3 +28,6 @@ while (true) {
 }
 consumer.poll(timeout)的timeout實際上的意義還沒去探討
 在某個版本之後已經deprecated直接將poll傳入一個整數的方式，改為使用傳入Duration的方式
+
+7. shutdown zookeeper與kafka時應該要有特定的流程去做，我直接強制關閉再啟動時，kafka第一次沒有順利的被啟動
+(實際上訊息有沒有在過程遺漏都要測試)
