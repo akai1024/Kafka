@@ -1,0 +1,30 @@
+1. 啟動zookeeper與kafka時在目錄下會依照config生成zookeeper與logs對應的目錄
+ - zookeeper
+ - kafka-logs
+ 
+2. kafka-logs隨便測試傳遞一些訊息，立即就產生了1G左右的檔案，因此這邊可能需要再去實測連續運行對硬體所造成的負擔
+
+3. 在測試JavaCode的Consumer裡：
+onPartitionsAssigned(Collection<TopicPartition> collection){
+  // 將偏移量移到最初始
+  consumer.seekToBeginning(collection);
+}
+consumer.seekToBeginning(collection)將會使consumer每次啟動時都重新消費一次所有訊息
+這行不執行時consumer則自動以最最後消費的訊息為起點
+若consumer在某個時間點crash，當他重新on起來時將會把這段期間所有的訊息重新消費一次
+簡單的說，consumer啟動時會以最後一個消費的訊息為起點重新poll
+
+4. 針對第三點，還要測試crash期間修改partition配置時是否會產生其他問題
+
+5. 必須先啟動zookeeper才能啟動kafka
+
+6. 在測試JavaCode的Consumer裡：
+while (true) {
+  Duration timeout = Duration.of(100, ChronoUnit.MILLIS);
+  ConsumerRecords<String, String> records = consumer.poll(timeout);
+  for (ConsumerRecord<String, String> record : records){
+    System.out.printf("offset = %d, key = %s, value = %s%n", record.offset(), record.key(), record.value());
+  }
+}
+consumer.poll(timeout)的timeout實際上的意義還沒去探討
+在某個版本之後已經deprecated直接將poll傳入一個整數的方式，改為使用傳入Duration的方式
