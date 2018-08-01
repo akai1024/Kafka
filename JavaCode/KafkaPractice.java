@@ -54,8 +54,11 @@ public class KafkaPractice {
 
 	}
 
+	/**
+	* 創建topic
+	*/
 	private static void createTopic() {
-		// 创建topic
+		
 		Properties props = new Properties();
 		props.put("bootstrap.servers", LOCATION);
 		
@@ -73,6 +76,9 @@ public class KafkaPractice {
 		}
 	}
 
+	/**
+	* 模仿訊息產生者送訊息
+	*/
 	private static void producerSendMessage() {
 		Properties props = new Properties();
 		props.put("bootstrap.servers", LOCATION);
@@ -104,6 +110,9 @@ public class KafkaPractice {
 		producer.close();
 	}
 
+	/**
+	* 消費者接收訊息
+	*/
 	private static void consumerRecvMessage() {
 		Properties props = new Properties();
 		props.put("bootstrap.servers", LOCATION);
@@ -118,7 +127,7 @@ public class KafkaPractice {
 			}
 
 			public void onPartitionsAssigned(Collection<TopicPartition> collection) {
-				// 将偏移设置到最开始
+				// 將偏移量移到初始
 				consumer.seekToBeginning(collection);
 			}
 		});
