@@ -15,7 +15,7 @@ consumer.seekToBeginning(collection)將會使consumer每次啟動時都重新消
 若consumer在某個時間點crash，當他重新on起來時將會把這段期間所有的訊息重新消費一次
 簡單的說，consumer啟動時會以最後一個消費的訊息為起點重新poll
 
-4. 針對第三點，還要測試crash期間修改partition配置時是否會產生其他問題
+4. 針對第3點，還要測試crash期間修改partition配置時是否會產生其他問題
 
 5. 必須先啟動zookeeper才能啟動kafka
 
