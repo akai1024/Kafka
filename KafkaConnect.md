@@ -17,7 +17,7 @@
         ${KAFKA_HOME}/bin/connect-distributed.sh ${KAFKA_HOME}/config/kafka-connect.properties
 
 ### 加入plugins的方法
-1. 將plugin的jar檔整理在 `${KAFKA_HOME}/plugins` 中，並將kafka.properties配置(這個配置會在啟動Kafka時配置，詳見Kafka的安裝過程)中增加plugins的路徑，然後重啟Kafka
+1. 將plugin的jar檔整理在 `${KAFKA_HOME}/plugins` 中，並將kafka-connect.properties配置中增加plugins的路徑，然後重啟KafkaConnect
 
         plugin.path=${KAFKA_HOME}/plugins
 
